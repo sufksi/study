@@ -29,9 +29,11 @@ public:
     void SetLableName(const QString& name);
     void printStrg();
     void setStrg(int index);
+    void setStrgByArry(int *arry,int size);
+    void reLoadLineExit();
 
 signals:
-        void mysignal(QString str);
+        void mysignal(int index,int val);
 private:
     QLineEdit *qle[PO_MODULES_STRGS_NUM];
     QWidget *qwidg;

@@ -6,92 +6,85 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
-    <height>627</height>
+    <width>502</width>
+    <height>309</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="6" column="0">
-    <widget class="QPushButton" name="pushButtonSend">
-     <property name="text">
-      <string>send</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1" colspan="2">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>515</width>
-       <height>25</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="lineEditIP"/>
-   </item>
-   <item row="4" column="0" colspan="4">
-    <widget class="QTextEdit" name="textEditRead">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="4">
-    <widget class="QTextEdit" name="textEditWrite"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="labelPort">
-     <property name="text">
-      <string>PORT</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2" rowspan="2" colspan="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>connect</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" rowspan="2">
-    <widget class="QLineEdit" name="lineEditPort"/>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="labelIP">
-     <property name="text">
-      <string>IP</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="3">
-    <widget class="QPushButton" name="pushButtonClose">
-     <property name="text">
-      <string>close</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-  </layout>
+  <widget class="QLineEdit" name="lineEditIP">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>90</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelPort">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>140</y>
+     <width>30</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PORT</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditPort">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>130</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelIP">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>90</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>IP</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonCancle">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>200</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>cancle</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>200</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>connect</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

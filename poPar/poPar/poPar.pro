@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,12 +19,17 @@ SOURCES += \
     client.cpp \
     main.cpp \
     mainwindow.cpp \
-    mstrgin.cpp
+    mstrgin.cpp \
+    parsexml.cpp \
+    pomodule.cpp
 
 HEADERS += \
     client.h \
     mainwindow.h \
-    mstrgin.h
+    modvector.h \
+    mstrgin.h \
+    parsexml.h \
+    pomodule.h
 
 FORMS += \
     client.ui \

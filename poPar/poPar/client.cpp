@@ -1,59 +1,81 @@
 #include "client.h"
-#include "ui_client.h"
-#include <QHostAddress>
-#include <QStatusBar>
 
 Client::Client(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Client)
 {
-
     ui->setupUi(this);
-   // ui->lineEditIP->setInputMask("");
-    /*实现window socket编程*/
     pClinet = new QTcpSocket(this);
-    QStatusBar *info = new QStatusBar(this);
-    lab = new QLabel(this);
-    info->addWidget(lab);
+    QRegExp rx("\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
+    ui->lineEditIP->setValidator(new QRegExpValidator(rx, this));
+    ui->lineEditPort->setInputMask("9999");
 
-    connect(pClinet,&QTcpSocket::connected,this,
-            [=](){
-        lab->setText("connect success");
-    });
+    connect(this->pClinet,&QTcpSocket::connected,this,&Client::conntodevice);
 
-    connect(pClinet,&QTcpSocket::readyRead,this,
-            [=](){
-        lab->setText("read success");
-        QByteArray str = pClinet->readAll();
-        ui->textEditRead->append(str);
-    });
-
+    connect(this->pClinet,&QTcpSocket::readyRead,this,
+            [=]()
+            {
+                QString str;
+                if(readData(str))
+                    emitReadSignal(str);
+            }
+    );
 }
 
 Client::~Client()
 {
     delete ui;
 }
-
-void Client::on_pushButton_pressed()
+void Client::conntodevice()
 {
-    QString IP = ui->lineEditIP->text();
-    qint16 port = ui->lineEditPort->text().toInt();
+    emit mysignal();
+}
+bool Client::disConnectServer()
+{
+    this->pClinet->disconnectFromHost();
 
-    pClinet->connectToHost(QHostAddress(IP),port);
+    qDebug()<<"disConnect";
+
+    return  true;
+}
+bool Client::connectServer()
+{
+    qDebug()<<ip;
+    qDebug()<<port;
+
+    pClinet->connectToHost(ip,port);
+    qDebug()<<"connectServer";
+
+    return  true;
+}
+void Client::on_pushButtonCancle_clicked()
+{
+    this->close();
+
+}
+
+void Client::on_pushButton_clicked()
+{
+    port = ui->lineEditPort->text().toUInt();
+    ip = ui->lineEditIP->text();
+    connectServer();
 
 
 }
 
-void Client::on_pushButtonSend_clicked()
+void Client::writeData(const QString& str)
 {
-    QString str = ui->textEditWrite->toPlainText();
-    pClinet->write(str.toUtf8().data());
-    lab->setText("send success");
-
+    qDebug()<<pClinet->write(str.toUtf8().data(),str.size());
 }
-
-void Client::on_pushButtonClose_clicked()
+bool Client::readData(QString & str)
 {
-    pClinet->close();
+    str = pClinet->readAll();
+    if(str.isEmpty())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

@@ -54,7 +54,7 @@ void MStrgIn::MStrgInInit(const QString& labStr,bool isw, Uint32 *ptr,const QRec
         connect(qle[i],&QLineEdit::editingFinished,this,
                 [=](){
             data[i] = qle[i]->text().toInt();
-            //qDebug()<<" i = "<<i;
+            qDebug()<<" i = "<<i;
             setStrg(i);
         });
 
@@ -88,8 +88,9 @@ void MStrgIn::printStrg()
 }
 void MStrgIn::setStrg(int index)
 {
-    qDebug()<<"set day param";
-    emit mysignal(QString("set success"));
+    qDebug()<<"set day param = "<<index;
+    data[index] = qle[index]->text().toInt();
+    emit mysignal(index,data[index]);
     //mysignal();
     /*if(parDay == mode)
     {
@@ -103,5 +104,18 @@ void MStrgIn::setStrg(int index)
     {
         qDebug()<<"set night param";
     }*/
+}
+
+void MStrgIn::setStrgByArry(int *arry,int size)
+{
+    for(int i = 0;i<size;i++)
+        data[i] = arry[i];
+
+    reLoadLineExit();
+}
+void MStrgIn::reLoadLineExit()
+{
+    for(int i = 0;i<PO_MODULES_STRGS_NUM;i++)
+        qle[i]->setText(QString::number(data[i]));
 }
 
